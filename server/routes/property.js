@@ -1,0 +1,11 @@
+const router = require("express").Router();
+const validateDto = require("../middlewares/validation");
+const ctrls = require("../controllers/property");
+const Joi = require("joi");
+const { stringReq, numberReq, string } = require("../middlewares/joiSchema");
+const { verifyToken, isAdmin } = require("../middlewares/verifyToken");
+const rateLimiter = require("../middlewares/rateLimiter");
+// router.use(rateLimiter);
+router.get("/", ctrls.getProperties);
+router.get("/one/:propertyId", ctrls.getOneById);
+module.exports = router;
